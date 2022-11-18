@@ -1,5 +1,7 @@
 const pool = require("../db");
+const { v4: uuid } = require("uuid");
 
+// Función donde ejecuta query para obtener todos los posts de la base de datos
 const getAllPosts = async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM post");
@@ -9,6 +11,7 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+// Función donde ejecuta query para obtener solo un post según el nombre
 const getPost = async (req, res) => {
   const { nombre } = req.params;
 
@@ -29,13 +32,15 @@ const getPost = async (req, res) => {
   }
 };
 
+// Función donde ejecuta query para crear un post
 const createPost = async (req, res) => {
   const { nombre, descripcion } = req.body;
+  const id = uuid();
 
   try {
     const result = await pool.query(
-      "INSERT INTO post (nombre, descripcion) VALUES ($1, $2) RETURNING *",
-      [nombre, descripcion]
+      "INSERT INTO post (id, nombre, descripcion) VALUES ($1, $2, $3) RETURNING *",
+      [id, nombre, descripcion]
     );
 
     res.json(result.rows[0]);
@@ -44,6 +49,7 @@ const createPost = async (req, res) => {
   }
 };
 
+// Función donde ejecuta query para eliminar un post de la base de datos
 const deletePost = async (req, res) => {
   const { id } = req.params;
 

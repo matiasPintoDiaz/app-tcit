@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
-app.use(postsRoutes);
+app.use(postsRoutes); // Rutas de la aplicación
 
 app.listen(PORT, () => {
   console.log(`Conectado a ${PORT}!`);

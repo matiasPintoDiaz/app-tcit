@@ -8,6 +8,7 @@ export default function FormPosts() {
     descripcion: "",
   });
 
+  // Evento que realiza petición POST con los datos del formulario y crea post
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +26,8 @@ export default function FormPosts() {
     alert(`Post Creado: \n
             Nombre: ${data.nombre}
             Descripción: ${data.descripcion}`);
+
+    window.location.reload(false);
   };
 
   const handleChange = (e) => {

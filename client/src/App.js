@@ -20,8 +20,6 @@ export default function App() {
         <ListPosts />
         <br />
         <br />
-        <br />
-        <br />
       </Container>
     </>
   );

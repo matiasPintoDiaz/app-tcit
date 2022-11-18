@@ -17,19 +17,21 @@ export default function ListPosts() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
 
+  // Función que obtiene los posts de la base de datos y los setea para poder mostrarlos
   const loadPosts = async () => {
     const res = await fetch("http://localhost:4000/posts");
     const data = await res.json();
     setPosts(data);
   };
 
+  // Evento que elimina un post de la base de datos según su id
   const handleDelete = async (id) => {
     const res = await fetch(`http://localhost:4000/posts/${id}`, {
       method: "DELETE",
     });
 
     const data = await res.json();
-    console.log(data);
+
     setPosts(posts.filter((post) => post.id !== id));
 
     alert(`Post Eliminado: \n
@@ -41,11 +43,12 @@ export default function ListPosts() {
     setSearch(e.target.value);
   };
 
-  let resultados = [];
+  // Condicional donde pregunta si lo que está escrito en el textfield de búsqueda existe en el array "posts"
+  let results = [];
   if (!search) {
-    resultados = posts;
+    results = posts;
   } else {
-    resultados = posts.filter((post) =>
+    results = posts.filter((post) =>
       post.nombre.toLowerCase().includes(search.toLocaleLowerCase())
     );
   }
@@ -79,7 +82,7 @@ export default function ListPosts() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {resultados.map((post) => (
+            {results.map((post) => (
               <TableRow
                 key={post.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

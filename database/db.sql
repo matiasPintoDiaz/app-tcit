@@ -1,7 +1,7 @@
 CREATE DATABASE bdposts;
 
 CREATE TABLE post(
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    descripcion VARCHAR(255)
+    id VARCHAR(255) PRIMARY KEY,
+    nombre VARCHAR (255) UNIQUE,
+    descripcion VARCHAR (255)
 );
