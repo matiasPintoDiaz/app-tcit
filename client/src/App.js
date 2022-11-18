@@ -1,41 +1,28 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FormPosts from "./components/FormPosts";
-import ListPosts from './components/ListPosts';
+import ListPosts from "./components/ListPosts";
+import { Container, Divider } from "@mui/material";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<ListPosts />}></Route>
-        <Route path='/posts/crearPost' element={<FormPosts />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <NavBar />
+      <Container>
+        <br />
+        <br />
+        <FormPosts />
+        <br />
+        <br />
+        <Divider />
+        <br />
+        <br />
+        <ListPosts />
+        <br />
+        <br />
+        <br />
+        <br />
+      </Container>
+    </>
   );
 }
-
-/* import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App; */

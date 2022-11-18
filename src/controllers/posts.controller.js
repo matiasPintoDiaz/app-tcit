@@ -10,10 +10,12 @@ const getAllPosts = async (req, res) => {
 };
 
 const getPost = async (req, res) => {
-  const { id } = req.params;
+  const { nombre } = req.params;
 
   try {
-    const result = await pool.query("SELECT * FROM post WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM post WHERE nombre = $1", [
+      nombre,
+    ]);
 
     if (result.rows.length === 0) {
       res.json({
@@ -30,7 +32,6 @@ const getPost = async (req, res) => {
 const createPost = async (req, res) => {
   const { nombre, descripcion } = req.body;
 
-  // console.log(nombre, descripcion);
   try {
     const result = await pool.query(
       "INSERT INTO post (nombre, descripcion) VALUES ($1, $2) RETURNING *",
